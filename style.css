@@ -80,7 +80,7 @@ button:hover {
     flex-direction: row;
     padding: 0;
   }
-  
+
   input[type="date"],
   button {
     width: auto;
@@ -98,13 +98,13 @@ button:hover {
 
 /* Gallery items */
 .gallery-item {
-  flex: 1 1 100%;  /* full width by default */
+  flex: 1 1 100%; /* full width by default */
   min-width: 280px;
   max-width: 500px;
   background: white;
   padding: 10px;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -141,4 +141,131 @@ button:hover {
 .placeholder-icon {
   font-size: 48px;
   margin-bottom: 20px;
+}
+
+/* --- Hover zoom (LevelUp) --- */
+.media-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+}
+.media-wrap img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+.gallery-item:hover .media-wrap img {
+  transform: scale(1.05);
+}
+
+/* Video badge */
+.video-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 20px;
+  line-height: 1;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+.video-fallback {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 200px;
+  background: #111;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+/* Fun fact */
+.fact {
+  background: #fff;
+  border-left: 4px solid #d32f2f; /* NASA accent-ish */
+  padding: 12px 14px;
+  margin: 0 20px 10px;
+  border-radius: 6px;
+  color: #333;
+}
+@media (min-width: 600px) {
+  .fact {
+    margin: 0 0 10px;
+  }
+}
+
+/* --- Modal --- */
+.modal.hidden {
+  display: none;
+}
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+.modal-dialog {
+  position: fixed;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  width: min(920px, 94vw);
+  max-height: 90vh;
+  overflow: auto;
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  display: grid;
+  place-items: center;
+
+  width: 36px;
+  height: 36px;
+  padding: 0;
+
+  border: none;
+  border-radius: 999px;
+  background: #eee;
+
+  font-size: 18px; /* size of ✕ */
+  line-height: 1; /* prevent vertical offset */
+  cursor: pointer;
+
+  z-index: 2; /* stay above media */
+  outline: none; /* avoid default outline jump */
+}
+.modal-close:focus-visible {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.15); /* accessible focus ring without shifting */
+}
+.modal-close:active {
+  transform: scale(0.96); /* tactile press without moving layout */
+}
+.modal-media img,
+.modal-media iframe {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+.modal-media iframe {
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+.modal-body {
+  margin-top: 12px;
+}
+.modal-body h2 {
+  margin-bottom: 6px;
+  color: #111;
+}
+.modal-body .modal-date {
+  color: #666;
+  margin-bottom: 10px;
 }
